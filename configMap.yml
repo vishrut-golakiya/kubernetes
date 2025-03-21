@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+  namespace: mysql
+data: 
+  MYSQL_DATABASE: devops

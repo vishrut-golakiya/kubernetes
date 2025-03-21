@@ -1,0 +1,37 @@
+Cluster Setup (Kind):
+
+Create a Kind cluster with 1 master node and 2 worker nodes.
+Namespace:
+
+Create a namespace called web-app.
+Persistent Storage:
+
+Create PersistentVolume (PV) and PersistentVolumeClaim (PVC) for:
+MySQL Database (Storage: 5Gi).
+WordPress (Storage: 5Gi).
+MySQL Deployment:
+
+Create a Deployment for MySQL with the following specs:
+Image: mysql:5.7
+Environment Variables: MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD.
+Volume: Use PVC for persistent storage.
+WordPress Deployment:
+
+Create a Deployment for WordPress with the following specs:
+Image: wordpress:latest
+Environment Variables: WORDPRESS_DB_HOST, WORDPRESS_DB_USER, WORDPRESS_DB_PASSWORD, WORDPRESS_DB_NAME.
+Volume: Use PVC for persistent storage.
+Services:
+
+Create ClusterIP Service for MySQL.
+Create LoadBalancer Service for WordPress.
+Ingress:
+
+Create an Ingress to route traffic to the WordPress Service.
+Use hostname: wordpress.local (You will need to add this to your /etc/hosts file).
+Autoscaling (HPA):
+
+Set up Horizontal Pod Autoscaling (HPA) for the WordPress Deployment with:
+Minimum Replicas: 1
+Maximum Replicas: 5
+Target CPU Utilization: 50% 

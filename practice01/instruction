@@ -1,0 +1,55 @@
+Project Title: Apache Web Server Deployment on Kubernetes with Complete Setup
+Objective:
+Deploy a simple Apache web server application on a Kubernetes cluster using various Kubernetes resources to build a robust and scalable architecture.
+
+Components:
+Pod Configuration:
+
+Create a basic pod running the Apache web server.
+Namespace:
+
+Isolate your application environment by creating a dedicated namespace.
+Deployments & ReplicaSets:
+
+Use Deployments to ensure desired state management and ReplicaSets to handle scaling and availability.
+Services (Service.yml):
+
+Expose the Apache application using a Service.
+Ingress (Ingress.yml):
+
+Set up an Ingress controller to manage external access to your services.
+ConfigMap & Secrets:
+
+Store Apache configuration files in a ConfigMap.
+Store sensitive data (like passwords or tokens) in a Secret.
+Persistent Volumes & Persistent Volume Claims:
+
+Mount storage for Apache logs or other persistent data.
+Service Account & Role-based Access Control (RBAC):
+
+Create a ServiceAccount and use RoleBinding for access control.
+Horizontal Pod Autoscaler (HPA):
+
+Configure autoscaling based on CPU or memory utilization.
+CronJobs & Jobs:
+
+Create a Job for one-time tasks.
+Create a CronJob for periodic tasks, like log cleanup or backup.
+DaemonSets:
+Deploy logging agents or monitoring tools to all nodes.
+StatefulSets:
+Use StatefulSets if you want persistent, stable network identifiers and storage.
+Kind Configuration:
+Use a kind-configure.yaml to set up a local Kubernetes cluster for testing.
+Tasks to Accomplish:
+Create a Kubernetes cluster using Kind with two nodes.
+Deploy Apache as a Kubernetes Deployment with ConfigMaps and Secrets for configuration.
+Expose the Apache server using Services and Ingress.
+Use PersistentVolumes and PersistentVolumeClaims for storing data.
+Implement Horizontal Pod Autoscaling for the Apache deployment.
+Configure RBAC using ServiceAccounts, Roles, and RoleBindings.
+Create a CronJob to clean up temporary files every hour.
+Deploy a logging DaemonSet to collect logs from all nodes.
+Scale the deployment using ReplicaSets.
+Test failover handling by deleting pods and ensuring automatic recovery.
+Monitor and optimize the cluster using Kubernetes metrics.

@@ -1,0 +1,11 @@
+kind: Pod 
+apiVersion: v1
+metadata:
+  name: oxer-pod
+  namespace: oxer
+spec:
+  containers:
+  - name: oxer
+    image: vishrut0/project:main
+    ports:
+    - containerPort: 80

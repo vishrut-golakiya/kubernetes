@@ -71,8 +71,31 @@
 
 #lets create a calcultor
 
-first_value= int(input("enter the first value: "))
-operation= input("+\n-\n*\n/\npick an operation: ")
-second_value= int(input("enter the second value: "))
-answer= (first_value)(operation)(second_value)
-print(answer)
+# first_value= int(input("enter the first value: "))
+# operation= input("+\n-\n*\n/\npick an operation: ")
+# second_value= int(input("enter the second value: "))
+# answer= (first_value)(operation)(second_value)
+# print(answer)
+
+
+
+
+# Given an integer array nums and an integer val, remove all occurrences of val in nums in-place.
+# The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+# Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+# Change the array nums such that the first k elements of nums contain the elements which are not equal to val. 
+# The remaining elements of nums are not important as well as the size of nums.
+# Return k.
+
+
+numbers = [1, 2, 3, 2, 4, 1, 5]  # example input
+same_num = 0
+remaining_numbers = []
+
+for num in numbers:
+    count = numbers.count(num)
+    if count > 1:
+        same_num += 1
+    if num not in remaining_numbers:
+        remaining_numbers.append(num) 
+                                            

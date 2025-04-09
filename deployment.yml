@@ -1,27 +1,27 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: oxer-deployment
+  name: apachezz-deployment
   namespace: apache
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: oxer
+      app: apache
   template:
     metadata:
       labels:
-        app: oxer
+        app: apache
     spec:
       containers:
-      - name: oxer
-        image: apache:latest
+      - name: apache
+        image: vishrut0/project:latest
         ports:
         - containerPort: 80  
-        volumeMounts:
-        - mountPath: /mnt/data
-          name: my-volume
-      volumes:
-        - name: my-volume
-          persistentVolumeClaim:
-            claimName: local-pvc    
+      #   volumeMounts:
+      #   - mountPath: /mnt/data
+      #     name: my-volume
+      # volumes:
+      #   - name: my-volume
+      #     persistentVolumeClaim:
+      #       claimName: local-pvc    

@@ -1,16 +1,99 @@
-Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+What It will include
+Requirement specification for the latest laravel project (Laravel 12.X)
+Check which PHP version to be used along with all the necessary extensions to set up a basic laravel project.
+Which size of instance will be required as a bare minimum?
+Choose apache as a web server for this and specify which settings should have been tweaked in order to run the project smoothly.
+We will deploy this on plain ec2 instances with load balancer and auto scaling. Specify how load balancing along with autoscale works.
+In the last step we need to specify how we are going to deploy it continuously with CI/CD using the AWS code pipeline from our SCM (Git).
 
-An input string is valid if:
-
-Open brackets must be closed by the same type of brackets.
-Open brackets must be closed in the correct order.
-Every close bracket has a corresponding open bracket of the same type.
-
-
-
+How to make this 
+We need to write down each and every step very carefully with simple English and possible correct grammar. Each step will have a header and subheader if required. 
+Header and subheader used in doc will have the same font type and size throughout the doc.
+Include code or commands as and when you feel necessary in the document.
+Include a diagram of flow inside the doc whenever it is required to make it more interactive.
+In the end, generate a PDF out of it whenever it looks professional enough to exhibit.
 
 
-write a two for loop first i=0 
+Requirement specification
+
+    Laravel version: 12.X
+    php version: php8.2+
+    Required PHP Extensions: bcmath, ctype, fileinfo, json, mbstring, openssl, pdo, tokenizer, xml, curl, zip
+    apache as a web server
+
+Minimum EC2 Instance requirement
+
+    for basic laravel project we need minimum t3.small size EC2 instance
+
+EC2 instance setup
+
+    create a ec2 instance with t3.small instance 
+
+    setup apache2 
+    sudo apt update
+    sudo apt install apache2
+    
+    install php with extensions
+    sudo apt install php
+    sudo apt install php-{bcmath,ctype,mbstring,xml,json,pdo,tokenizer,curl,zip}
+
+    setup laravel
+    Create a Database for the Application 
+    sudo mysql
+    CREATE DATABASE database;
+    create a user and grant all permission for database.
+
+    create a laravel app using composer
+    composer create-project --prefer-dist laravel/laravel appname
+
+    configure laravel  
+    edit .env file for customize the configuration
+
+    setting up apache
+    edit deafult file of apache to run project smoothly than restart apache2
+
+
+    after a setup a bacis laravel project create a launch templent of instance
+
+    Create the target group
+    First, we’re going to create a target group for our ALB to direct traffic to.
+
+    To create a target group, go to the ‘Target groups’ dashboard under the ‘Load balancing section’ in the EC2 console.
+    
+    Our target type will be our EC2 instances, so make sure ‘Instances’ is selected and give your group a name.
+    We’re going to direct traffic to HTTP | port 80, so make sure the ‘Protocol’ is HTTP.
+    Select the same VPC we used for our EC2 instances.
+    On the next page, we should see the 2 running instances available to select, but we’ll leave it be for now.
+    Create the group and we’re ready for the next step.
+    
+    
+    Create an Application Load Balancer
+    
+    To create an ALB, go to the ‘Load balancing’ dashboard in the EC2 console and select Application Load Balancer.
+    
+    Give your ALB a name and make sure the ‘Scheme’ is ‘Internet-facing.’
+    Under ‘Network mapping,’ select the proper VPC and three subnets.
+    Select the proper security group
+    For our ‘Listener,’ we are going to listen for HTTP requests and forward them to our target group, so select the target group we created. Create the ALB!
+    
+    Create an auto scaling group
+    
+    Name your ASG and select the launch template we created in the last step.
+    Select the VPC and subnets where our ASG will create the EC2 instances.
+    Connect the ALB to the ASG
+
+    
 
 
 
+
+
+    
+
+
+
+
+
+
+
+    

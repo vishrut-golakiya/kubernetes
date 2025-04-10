@@ -1,10 +1,10 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: apachezz-deployment
+  name: demo-apache
   namespace: apache
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: apache
@@ -17,11 +17,18 @@ spec:
       - name: apache
         image: vishrut0/project:latest
         ports:
-        - containerPort: 80  
-      #   volumeMounts:
-      #   - mountPath: /mnt/data
-      #     name: my-volume
-      # volumes:
-      #   - name: my-volume
-      #     persistentVolumeClaim:
-      #       claimName: local-pvc    
+        - containerPort: 80
+        resources:
+          requests:
+            cpu:  200m 
+            memory: 512Mi
+          limits:
+            cpu:  400m 
+            memory: 1Gi 
+        volumeMounts:
+        - mountPath: /home/elox/Documents/kubernetes
+          name: my-volume
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: web-pvc 
